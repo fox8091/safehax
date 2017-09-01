@@ -5,6 +5,7 @@
 
 #include "global_backdoor.h"
 #include "kernel_patches.h"
+#include "libudsploit/udsploit.h"
 
 #define FCRAM(x)   (void *)((kver < SYSTEM_VERSION(2, 44, 6)) ? (0xF0000000 + x) : (0xE0000000 + x)) //0x20000000
 #define AXIWRAM(x) (void *)((kver < SYSTEM_VERSION(2, 44, 6)) ? (0xEFF00000 + x) : (0xDFF00000 + x)) //0x1FF00000
@@ -78,6 +79,9 @@ int main(int argc, char **argv){
 	kver = osGetKernelVersion();
 	if (kver > SYSTEM_VERSION(2, 53, 0)) //11.4^
 		PANIC(true, "UNSUPPORTED FIRMWARE!");
+		
+	PANIC(udsploit(), "UDSPLOIT FAILED");
+
 	
 	if (checkSvcGlobalBackdoor()){
 		initsrv_allservices();

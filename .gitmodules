@@ -1,0 +1,3 @@
+[submodule "source/libudsploit"]
+	path = source/libudsploit
+	url = https://github.com/fox8091/libudsploit
